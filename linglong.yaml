@@ -1,0 +1,30 @@
+package:
+  id: xavs2
+  name: xavs2
+  version: 1.4.1
+  kind: lib
+  description: |
+    xavs2.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/xavs2.git
+  version: uos
+  commit: c586aae40af8be5833fa6a7d8421f39ba65f2459
+  patch:
+  - 1001_allow_preseeded_revision.patch
+variables:
+  extra_args: |
+    --enable-shared \
+    --enable-pic \
+    --disable-asm
+
+build:
+  kind: autotools
+  manual:
+    configure: |
+      cd build/linux && ./configure ${conf_args} ${extra_args}
